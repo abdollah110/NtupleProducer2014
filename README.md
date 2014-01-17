@@ -33,7 +33,6 @@ CMG tools
 ```shell
 wget --no-check-certificate https://jez.web.cern.ch/jez/CMGTools.tgz
 tar xzvf CMGTools.tgz
-cd ../../..
 ```
 
 Remove some conflicting packages

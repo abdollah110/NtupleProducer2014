@@ -59,17 +59,17 @@ cmsenv
 New tau ID
 ```shell
 git cms-merge-topic -u cms-tau-pog:CMSSW_5_3_X_boostedTaus
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/EgammaAnalysis/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/GeneratorInterface/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoBTag/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoEgamma/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoMET/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/DataFormats/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoJets/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/PhysicsTools/ .
-cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/JetMETCorrections/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/EgammaAnalysis/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/GeneratorInterface/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoBTag/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoEgamma/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoMET/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/DataFormats/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoJets/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/PhysicsTools/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/JetMETCorrections/ .
 ```
 
 Correct TauMETAlgo.cc

@@ -76,8 +76,9 @@ cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/JetMETCorrections/ .
 Correct TauMETAlgo.cc
 ```shell
 vi JetMETCorrections/Type1MET/src/TauMETAlgo.cc 
+:%s/PFCandidateRefVector/vector<reco::PFCandidatePtr>
+:q
 ```
-Type :%s/PFCandidateRefVector/vector<reco::PFCandidatePtr>
 
 ```shell
 git clone https://github.com/cecilecaillol/NtupleProducer2014.git

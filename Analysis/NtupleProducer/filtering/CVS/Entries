@@ -1,0 +1,24 @@
+/LinkDef.h/1.1/Tue Mar  5 15:07:22 2013//TV-025D
+/MergeOutput_filter2.sh/1.1/Sun Jan 13 12:28:27 2013//TV-025D
+/PrepareJobs_removeDuplicates_filter.sh/1.4/Sun Jun 16 16:16:38 2013//TV-025D
+/README/1.1/Sun Jan 13 12:28:28 2013//TV-025D
+/Resubmit2.sh/1.2/Tue Mar  5 11:47:47 2013//TV-025D
+/ShowResults_filter_error2.sh/1.1/Sun Jan 13 12:28:28 2013//TV-025D
+/ShowResults_filter_good2.sh/1.1/Sun Jan 13 12:28:28 2013//TV-025D
+/ShowStatus.sh/1.3/Mon Mar 11 14:59:37 2013//TV-025D
+/checkJobs.sh/1.1/Sun Jan 13 12:28:28 2013//TV-025D
+/copy_from_srm.sh/1.1/Sun Feb 24 17:09:01 2013//TV-025D
+/copy_to_UCL.sh/1.1/Sun Feb 24 17:09:02 2013//TV-025D
+/filter.C/1.2/Tue Mar  5 14:33:50 2013//TV-025D
+/helper.h/1.1/Sun Jan 13 12:28:29 2013//TV-025D
+/makeProxy.sh/1.1/Sun Jan 13 12:28:29 2013//TV-025D
+/myGenobject.h/1.1/Tue Mar  5 14:33:50 2013//TV-025D
+/myevent.h/1.1/Tue Mar  5 14:33:51 2013//TV-025D
+/myobject.h/1.2/Thu Jun 13 12:59:48 2013//TV-025D
+/prepare.sh/1.1/Sun Jan 13 12:28:29 2013//TV-025D
+/removeDuplicate.sh/1.1/Sun Jan 13 12:28:29 2013//TV-025D
+/run_filter.C/1.1/Sun Jan 13 12:28:30 2013//TV-025D
+/run_filter.fragment/1.1/Sun Jan 13 12:28:30 2013//TV-025D
+/script.sh/1.2/Tue Mar  5 11:47:47 2013//TV-025D
+/selection.h/1.1/Sun Jan 13 12:28:30 2013//TV-025D
+D

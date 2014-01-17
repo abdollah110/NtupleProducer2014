@@ -1,0 +1,63 @@
+# Instruction for installing NtupleProducer in any CMSSW_5_3_X  (i.e. CMSSW_5_3_4_cand1) in zsh.
+
+cmsrel CMSSW_5_3_7_patch6
+cd CMSSW_5_3_7_patch6/src/
+cmsenv
+#MVA MET stuff
+cvs co -r METPU_5_3_X_v2 JetMETCorrections/METPUSubtraction 
+cd JetMETCorrections/METPUSubtraction/test/
+./setup.sh
+cd ../../../
+addpkg DataFormats/PatCandidates       V06-05-06
+addpkg PhysicsTools/PatAlgos           V08-09-31
+cvs up -r V08-09-07-05 PhysicsTools/PatAlgos/python/patTemplate_cfg.py
+
+#PAT in CMSSW5_3_3
+addpkg PhysicsTools/PatUtils           V03-09-26
+addpkg CommonTools/ParticleFlow        V00-03-16
+addpkg CommonTools/RecoUtils           V00-00-12
+addpkg CommonTools/RecoAlgos           V00-03-23
+addpkg DataFormats/ParticleFlowCandidate   V15-03-02      
+addpkg DataFormats/TrackReco   V10-02-02      
+addpkg DataFormats/VertexReco   V02-00-04
+addpkg RecoParticleFlow/PFProducer V15-02-06
+# tauID
+cvs up -C -r V01-04-25 RecoTauTag/RecoTau
+addpkg RecoTauTag/Configuration V01-04-13
+addpkg CondFormats/EgammaObjects V00-04-00
+# fix of PatAlgos
+cvs up -r 1.52.10.5 PhysicsTools/PatAlgos/python/tools/tauTools.py
+cvs up -r 1.6 PhysicsTools/PatAlgos/plugins/PATMHTProducer.h
+
+#Ecal laser filter
+cvs co -r V01-02-10 EventFilter/HcalRawToDigi
+
+# for egamma iso
+cvs co -r V00-00-16 -d EGamma/EGammaAnalysisTools UserCode/EGamma/EGammaAnalysisTools
+cat EGamma/EGammaAnalysisTools/data/download.url | sed "s?http?wget http?g" > EGamma/EGammaAnalysisTools/data/download.url.sh
+cd EGamma/EGammaAnalysisTools/data/; bash download.url.sh; cd ../../../
+#jet ID
+wget --no-check-certificate https://jez.web.cern.ch/jez/CMGTools.tgz
+tar xzvf CMGTools.tgz
+rm -f CMGTools.tgz
+#cvs co -r V00-03-03 -d CMGTools/External UserCode/CMG/CMGTools/External
+
+#MET corrections and uncertainty
+cvs co -r V04-06-05 JetMETCorrections/Type1MET
+cvs co -r 1.1 JetMETCorrections/Type1MET/interface/SysShiftMETcorrExtractor.h
+cvs co -r 1.1 JetMETCorrections/Type1MET/src/SysShiftMETcorrExtractor.cc
+cvs co -r 1.23 PhysicsTools/PatUtils/python/tools/metUncertaintyTools.py
+cvs co -r 1.6 JetMETCorrections/Type1MET/python/pfMETsysShiftCorrections_cfi.py
+
+# ntuple producer
+# If you change destination (-d parameter) change paths in "includes"  in header files
+cvs co -r V-025D -d Analysis/NtupleProducer UserCode/Abdollah/ZHttAnalysis/53XNtupleProducer
+
+#compile and link
+scram b -j 9
+
+#RUN
+cmsRun Analysis/NtupleProducer/ntupleproducer_cfg.py
+
+# When you want to add new parameters to ntupleProducer, you should
+#  source dictionary.csh (located in src directory) before "scram b".

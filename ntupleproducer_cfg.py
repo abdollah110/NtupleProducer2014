@@ -32,11 +32,11 @@ process.load("Analysis.NtupleProducer.New_hTozzTo4leptonsPFIsolationProducer_cff
 process.load("Analysis.NtupleProducer.JES_Uncertainty_FR_cff")
 process.MessageLogger = cms.Service("MessageLogger")
 process.load("RecoLocalCalo/EcalRecAlgos/EcalSeverityLevelESProducer_cfi")
-process.load('EgammaAnalysis.ElectronTools.electronIdMVAProducer_cfi')
+process.load('EgammaAnalysis.ElectronTools.electronIdMVAProducer_cfi') #new location of the code (I have asked Laurent)
 process.load("CMGTools.External.pujetidsequence_cff") #load PU JetID sequence
 process.load("EventFilter.HcalRawToDigi.hcallasereventfilter2012_cff") # laser correction
 process.load("PhysicsTools.PatUtils.patPFMETCorrections_cff") #MET correction
-process.load("RecoMET.METPUSubtraction.mvaPFMET_leptons_cff") #MVA MET
+process.load("RecoMET.METPUSubtraction.mvaPFMET_leptons_cff") #new location of the code (I have asked Phil)
 
 #################################################   Samples and GlobalTag   ############################
 #Source File
@@ -74,7 +74,7 @@ process.myanalysis = cms.EDAnalyzer("NtupleProducer",
                                     Include_Jet=cms.bool(True),
                                     Include_JetCorrection=cms.bool(False),
                                     Include_MET=cms.bool( True),
-                                    Include_L1=cms.bool( True),
+                                    Include_L1=cms.bool( True),#new to have L1 trigger objects
                                     Include_MET_Uncertaity=cms.bool(True),
                                     Include_GenPartiles=cms.bool(True),
                                     Include_HLT=cms.bool(True),
@@ -226,7 +226,7 @@ process.elPFIsoValueGamma04NoPFId.deposits[0].vetos= cms.vstring('EcalBarrel:Con
 
 #Trigger matching "HLT_SingleIsoTau20_Trk15_MET25_v*"
 process.load("PhysicsTools.PatAlgos.triggerLayer1.triggerProducer_cff")
-
+#new trigger matching
 process.muonTriggerMatchHLTMuonsLoose = cms.EDProducer("PATTriggerMatcherDRLessByR",
                                                                src=cms.InputTag("selectedPatMuons"),
                                                                matched=cms.InputTag("patTrigger"),
@@ -338,7 +338,7 @@ process.p = cms.Path (
                       process.inclusiveVertexing *
 #                      process.softElectronCands* #new, removed
                       process.pfParticleSelectionSequence +
-                      process.type0PFMEtCorrection + #new (MVA MET twiki suggested to add this these two lines, should the "+" be a "*"?)
+                      process.type0PFMEtCorrection + #new (MVA MET twiki suggested to add this these two lines if the release is CMSSW_5_3_11 or newer, should the "+" be a "*"?)
                       process.patPFMETtype0Corr + #new
                        process.patDefaultSequence +
                        process.eleIsoSequence*

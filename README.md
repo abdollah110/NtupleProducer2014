@@ -1,6 +1,6 @@
 NtupleProducer2014
 ==================
-#Directory with all packages
+Directory with all packages
 
 ```shell
 mkdir NtupleProducer_help
@@ -10,7 +10,7 @@ cd CMSSW_5_3_14_patch2/src/
 cmsenv
 ```
 
-#MVA MET
+MVA MET
 ```shell
 git cms-addpkg PhysicsTools/PatAlgos
 git cms-merge-topic cms-analysis-tools:5_3_14-updateSelectorUtils
@@ -19,7 +19,7 @@ git cms-merge-topic -u TaiSakuma:53X-met-131120-01
 git-cms-merge-topic -u cms-met:53X-MVaNoPuMET-20131217-01
 ```
 
-#EGamma tools
+EGamma tools
 ```shell
 cvs co -r V00-00-09 EgammaAnalysis/ElectronTools
 #cvs co -r jakob19April2013_2012ID EgammaAnalysis/ElectronTools
@@ -29,14 +29,14 @@ cat download.url | xargs wget
 cd ../../..
 ```
 
-#CMG tools
+CMG tools
 ```shell
 wget --no-check-certificate https://jez.web.cern.ch/jez/CMGTools.tgz
 tar xzvf CMGTools.tgz
 cd ../../..
 ```
 
-#Remove some conflicting packages
+Remove some conflicting packages
 ```shell
 rm -rf DataFormats/TauReco
 rm -rf RecoTauTag/RecoTau
@@ -47,7 +47,7 @@ rm -rf PhysicsTools/PatAlgos
 rm -rf DataFormats/PatCandidates
 ```
 
-#Directory with tau ID packages
+Directory with tau ID packages
 ```shell
 cd ../../..
 mkdir NtupleProducer_main
@@ -57,7 +57,7 @@ cd CMSSW_5_3_14_patch2/src/
 cmsenv
 ```
 
-#New tau ID
+New tau ID
 ```shell
 git cms-merge-topic -u cms-tau-pog:CMSSW_5_3_X_boostedTaus
 cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools
@@ -73,12 +73,13 @@ cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/PhysicsTools/ .
 cp -rf ../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/JetMETCorrections/ .
 ```
 
-#Correct TauMETAlgo.cc
+Correct TauMETAlgo.cc
 ```shell
 vi JetMETCorrections/Type1MET/src/TauMETAlgo.cc 
 ```
-#Type :%s/PFCandidateRefVector/vector<reco::PFCandidatePtr>
+Type :%s/PFCandidateRefVector/vector<reco::PFCandidatePtr>
 
 ```shell
-git clone 
+git clone https://github.com/cecilecaillol/NtupleProducer2014.git
+scram b -j 20
 ```

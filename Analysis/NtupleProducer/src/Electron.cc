@@ -204,7 +204,7 @@ void NtupleProducer::DoElectronAnalysis(const edm::Event& iEvent, const edm::Eve
 	elo.rawE_SC  = iElectron->superCluster()->rawEnergy(); 
 	elo.preshowerE_SC = iElectron->superCluster()->preshowerEnergy();
 
-//        elo.EleId95rel = iElectron->electronID("simpleEleId95relIso");
+        elo.EleId95rel = iElectron->electronID("simpleEleId95relIso");
 //        elo.EleId90rel = iElectron->electronID("simpleEleId90relIso");
 //        elo.EleId85rel = iElectron->electronID("simpleEleId85relIso");
 //        elo.EleId80rel = iElectron->electronID("simpleEleId80relIso");

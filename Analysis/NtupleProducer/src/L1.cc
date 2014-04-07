@@ -14,6 +14,9 @@ void NtupleProducer::DoL1Analysis(const edm::Event& iEvent) {
         myl1.eta = jetl1->eta();
         myl1.phi = jetl1->phi();
         myl1.et = jetl1->et();
+	myl1.px = jetl1->px();
+	myl1.py = jetl1->py();
+	myl1.pz = jetl1->pz();
         (m->L1Jet).push_back(myl1);
     }//loop over L1 central jets
 
@@ -26,6 +29,9 @@ void NtupleProducer::DoL1Analysis(const edm::Event& iEvent) {
         myl1.eta = taul1->eta();
         myl1.phi = taul1->phi();
         myl1.et = taul1->et();
+        myl1.px = taul1->px();
+        myl1.py = taul1->py();
+        myl1.pz = taul1->pz();
         (m->L1Tau).push_back(myl1);
     }//loop over L1 taus
 

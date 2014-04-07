@@ -32,11 +32,11 @@ process.load("Analysis.NtupleProducer.New_hTozzTo4leptonsPFIsolationProducer_cff
 process.load("Analysis.NtupleProducer.JES_Uncertainty_FR_cff")
 process.MessageLogger = cms.Service("MessageLogger")
 process.load("RecoLocalCalo/EcalRecAlgos/EcalSeverityLevelESProducer_cfi")
-process.load('EgammaAnalysis.ElectronTools.electronIdMVAProducer_cfi') #new location of the code (I have asked Laurent)
+process.load('EgammaAnalysis.ElectronTools.electronIdMVAProducer_cfi') #new location of the code
 process.load("CMGTools.External.pujetidsequence_cff") #load PU JetID sequence
-process.load("EventFilter.HcalRawToDigi.hcallasereventfilter2012_cff") # laser correction
+process.load("EventFilter.HcalRawToDigi.hcallasereventfilter2012_cff") #laser correction
 process.load("PhysicsTools.PatUtils.patPFMETCorrections_cff") #MET correction
-process.load("RecoMET.METPUSubtraction.mvaPFMET_leptons_cff") #new location of the code (I have asked Phil)
+process.load("RecoMET.METPUSubtraction.mvaPFMET_leptons_cff") #new location of the code
 
 #################################################   Samples and GlobalTag   ############################
 #Source File
@@ -46,7 +46,7 @@ process.source = cms.Source("PoolSource",
     )
                             )
 process.maxEvents = cms.untracked.PSet(
-                                       input=cms.untracked.int32(20)
+                                       input=cms.untracked.int32(300)
                                        )
 
 isMC = True      #comment it for Data
@@ -54,11 +54,11 @@ isMC = True      #comment it for Data
 
 if isMC:
     HLTProcessName = 'HLT'
-    process.GlobalTag.globaltag = cms.string('START53_V22::All') #updated JEC
+    process.GlobalTag.globaltag = cms.string('START53_V23::All') #updated JEC
 
 else:
     HLTProcessName = 'HLT'
-    process.GlobalTag.globaltag = cms.string('FT53_V10A_AN3::All') #2012C_v1 re-reco Aug24
+    process.GlobalTag.globaltag = cms.string('FT_53_V21_AN4::All') 
     process.patPFMet.addGenMET = cms.bool(False)
 
 #################################################   EDANALYZER   ##################################
@@ -121,11 +121,13 @@ process.myanalysis = cms.EDAnalyzer("NtupleProducer",
                                     #Trigger and TriggerMatching
                                     triggerEvent=cms.InputTag("patTriggerEvent"),
                                     tauMatch_Loose=cms.string('tauTriggerMatchHLTTausLoose'),
-                                    tauMatch_Medium=cms.string('tauTriggerMatchHLTTausLoose'),
+                                    tauMatch_Medium=cms.string('tauTriggerMatchHLTTausMedium'),
                                     muonMatch_Loose=cms.string('muonTriggerMatchHLTMuonsLoose'),
 				    electronMatch_Loose=cms.string('muonTriggerMatchHLTMuonsLoose'),
                                     muonMatch_Medium=cms.string('muonTriggerMatchHLTMuonsLoose'),
                                     electronMatch_Medium=cms.string('muonTriggerMatchHLTMuonsLoose'),
+                                    jetMatch_Loose=cms.string('jetTriggerMatchHLTJetsLoose'),
+                                    jetMatch_Medium=cms.string('jetTriggerMatchHLTJetsLoose'),
 
                                     puJetIdFlag=cms.InputTag("puJetMva","fullId"),
                                     #rhoProducer = cms.InputTag('kt6PFJetsForRhoComputationVoronoi','rho') #new This line was there before, I have changed it with the following one
@@ -195,9 +197,11 @@ if not isMC:
 
 # Electron Id
 process.mvaID = cms.Sequence(  process.mvaTrigV0 + process.mvaNonTrigV0 )
+process.ElectronIDs = cms.Sequence(process.simpleEleIdSequence)
 process.patElectrons.electronIDSources = cms.PSet(
     mvaTrigV0=cms.InputTag("mvaTrigV0"),
-    mvaNonTrigV0 = cms.InputTag("mvaNonTrigV0")
+    mvaNonTrigV0 = cms.InputTag("mvaNonTrigV0"),
+    simpleEleId95relIso = cms.InputTag("simpleEleId95relIso")
                                                       )
 
 
@@ -240,12 +244,33 @@ process.muonTriggerMatchHLTMuonsLoose = cms.EDProducer("PATTriggerMatcherDRLessB
 process.tauTriggerMatchHLTTausLoose = cms.EDProducer("PATTriggerMatcherDRLessByR",
                                                 src=cms.InputTag("selectedPatTaus"),
                                                 matched=cms.InputTag("patTrigger"),
-                                                matchedCuts=cms.string('path( "HLT_IsoMu18_eta2p1_MediumIsoPFTau25_Trk5_eta2p1_v*" )'),
+                                                matchedCuts=cms.string('path("HLT_IsoMu18_eta2p1_MediumIsoPFTau25_Trk1_eta2p1_v*") || path("HLT_IsoMu18_eta2p1_MediumIsoPFTau25_Trk5_eta2p1_v*")'),
                                                 maxDPtRel=cms.double(0.5),
                                                 maxDeltaR=cms.double(0.5),
                                                 resolveAmbiguities=cms.bool(True),
                                                 resolveByMatchQuality=cms.bool(True)
                                                 )
+
+process.tauTriggerMatchHLTTausMedium = cms.EDProducer("PATTriggerMatcherDRLessByR",
+                                                src=cms.InputTag("selectedPatTaus"),
+                                                matched=cms.InputTag("patTrigger"),
+                                                matchedCuts=cms.string('path("HLT_DoubleMediumIsoPFTau25_Trk5_eta2p1_Jet30_v*") || path("HLT_DoubleMediumIsoPFTau30_Trk5_eta2p1_Jet30_v*") || path("HLT_DoubleMediumIsoPFTau30_Trk1_eta2p1_Jet30_v*") || path("HLT_DoubleMediumIsoPFTau35_Trk5_eta2p1_v*") || path("HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_v*")'),
+                                                maxDPtRel=cms.double(0.5),
+                                                maxDeltaR=cms.double(0.5),
+                                                resolveAmbiguities=cms.bool(True),
+                                                resolveByMatchQuality=cms.bool(True)
+                                                )
+
+process.jetTriggerMatchHLTJetsLoose = cms.EDProducer("PATTriggerMatcherDRLessByR",
+                                                               src=cms.InputTag("selectedPatJets"),
+                                                               matched=cms.InputTag("patTrigger"),
+                                                               matchedCuts=cms.string('path("HLT_DoubleMediumIsoPFTau25_Trk5_eta2p1_Jet30_v*") || path("HLT_DoubleMediumIsoPFTau30_Trk5_eta2p1_Jet30_v*") || path("HLT_DoubleMediumIsoPFTau30_Trk1_eta2p1_Jet30_v*")'),
+                                                               maxDPtRel=cms.double(0.5),
+                                                               maxDeltaR=cms.double(0.5),
+                                                               resolveAmbiguities=cms.bool(True),
+                                                               resolveByMatchQuality=cms.bool(True)
+                                                                                                      )
+
 #Vertexing
 process.load("RecoVertex.AdaptiveVertexFinder.inclusiveVertexing_cff")
 #SoftLepton
@@ -275,11 +300,11 @@ if isMC == False:
                         makeType1p2corrPFMEt = False,
                         makePFMEtByMVA = False,
                         makeNoPileUpPFMEt = False,
-                        doApplyType0corr = True,#new
-                        sysShiftCorrParameter = process.pfMEtSysShiftCorrParameters_2012runAvsNvtx_data,#new (remove [0] at the end, runA instead of run ABC)
+                        doApplyType0corr = False,
+                        sysShiftCorrParameter = process.pfMEtSysShiftCorrParameters_2012runABCDvsNvtx_data,#new (remove [0] at the end, runA instead of run ABC)
                         #sysShiftCorrParameter = process.pfMEtSysShiftCorrParameters_2012runABCvsNvtx_data,
                         doApplySysShiftCorr = False,
-                        #addToPatDefaultSequence = False,
+                        addToPatDefaultSequence = False,
                         )
 
 
@@ -296,10 +321,10 @@ else:
                         makeType1p2corrPFMEt = False,
                         makePFMEtByMVA = False,
                         makeNoPileUpPFMEt = False,
-                        doApplyType0corr = True,
-                        sysShiftCorrParameter = process.pfMEtSysShiftCorrParameters_2012runAvsNvtx_mc,#new 
+                        doApplyType0corr = False,
+                        sysShiftCorrParameter = process.pfMEtSysShiftCorrParameters_2012runABCDvsNvtx_mc,#new 
                         doApplySysShiftCorr = False,
-                        #addToPatDefaultSequence = False,
+                        addToPatDefaultSequence = False,
                         )
 
 process.patJetsNotOverlappingWithLeptonsForMEtUncertainty.checkOverlaps.taus.preselection = cms.string('pt > 20 && abs(eta) < 2.3 && leadPFChargedHadrCand.isNonnull() && leadPFChargedHadrCand.pt() > 5 && leadPFChargedHadrCand.mva_e_pi() < 0.6 && tauID("decayModeFinding") > 0.5 && tauID("againstMuonTight") > 0.5 && tauID("againstElectronLoose") > 0.5')
@@ -335,6 +360,7 @@ process.p = cms.Path (
                       process.selectPrimaryVertex *
                       process.PFTau * #prescribed by TAU POG
                       process.mvaID   *
+		      process.ElectronIDs  *
                       process.inclusiveVertexing *
 #                      process.softElectronCands* #new, removed
                       process.pfParticleSelectionSequence +
@@ -357,7 +383,7 @@ process.p = cms.Path (
 from PhysicsTools.PatAlgos.tools.trigTools import *
 
 #switchOnTrigger( process ) # This is optional and can be omitted.
-switchOnTriggerMatching(process, ['tauTriggerMatchHLTTausLoose','muonTriggerMatchHLTMuonsLoose'])
+switchOnTriggerMatching(process, ['tauTriggerMatchHLTTausLoose','tauTriggerMatchHLTTausMedium','jetTriggerMatchHLTJetsLoose','muonTriggerMatchHLTMuonsLoose'])
 
 # Switch to selected PAT objects in the trigger matching
 removeCleaningFromTriggerMatching(process)

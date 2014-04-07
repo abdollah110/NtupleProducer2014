@@ -35,6 +35,16 @@ void NtupleProducer::DoJetAnalysis(const edm::Event& iEvent) {
         myjet.pt = jet->pt();
         myjet.eta = jet->eta();
         myjet.phi = jet->phi();
+        myjet.px = jet->px();
+        myjet.py = jet->py();
+        myjet.pz = jet->pz();
+        myjet.z = jet->vz();
+
+        myjet.E = jet->p();
+        myjet.Energy = jet->energy();
+        myjet.mass = jet->mass();
+        myjet.mt = jet->mt();
+
         myjet.et = jet->et();
         PFJetIDSelectionFunctor jetIDLoose(PFJetIDSelectionFunctor::FIRSTDATA, PFJetIDSelectionFunctor::LOOSE);
         PFJetIDSelectionFunctor jetIDTight(PFJetIDSelectionFunctor::FIRSTDATA, PFJetIDSelectionFunctor::TIGHT);

@@ -66,6 +66,7 @@ public:
     float ecalIso, hcalIso, caloIso, trackIso, hcalOverEcal, SIP;
     bool passConversionVeto;
     float rawE_SC, preshowerE_SC;
+    float EleId95rel;
 
     //For jet and taus
     float bDiscriminatiors_CSV,bDiscriminatiors_JP,bDiscriminatiors_TCHPT;
@@ -77,6 +78,7 @@ public:
     int numChargedParticlesSignalCone, numNeutralHadronsSignalCone, numPhotonsSignalCone, numParticlesSignalCone, signalPiZeroCandidates;
     int numChargedParticlesIsoCone, numNeutralHadronsIsoCone, numPhotonsIsoCone, numParticlesIsoCone;
     float ptSumChargedParticlesIsoCone, ptSumPhotonsIsoCone;
+    int chargedMul_noPt_noDz_signalSub,chargedMul_noPt_noDz,chargedMul_Pt10_noDz_signalSub,chargedMul_Pt10_noDz,chargedMul_Pt15_noDz_signalSub,chargedMul_Pt15_noDz,chargedMul_noPt_Dz_signalSub,chargedMul_noPt_Dz,chargedMul_Pt10_Dz_signalSub,chargedMul_Pt10_Dz,chargedMul_Pt15_Dz_signalSub,chargedMul_Pt15_Dz;
     
     float sig_track1_pt, sig_track1_phi, sig_track1_eta, sig_track1_m;
     float sig_track2_pt, sig_track2_phi, sig_track2_eta, sig_track2_m;

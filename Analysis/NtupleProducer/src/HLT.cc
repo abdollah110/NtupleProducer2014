@@ -31,6 +31,7 @@ void NtupleProducer::DoHLTAnalysis(const edm::Event& iEvent) {
       triggo.py = obj.py();
       triggo.pz = obj.pz();
       triggo.eta = obj.eta();
+      triggo.phi = obj.phi();
 
       (m->L2Particles).push_back(triggo);
     }

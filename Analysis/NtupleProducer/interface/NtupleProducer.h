@@ -238,10 +238,18 @@ private:
     edm::InputTag PileUpInfo_;
     edm::InputTag GenParticlesInfo_;
     edm::InputTag triggerEvent_;
-    std::string tauMatch_Loose_;
-    std::string electronMatch_Loose_;
-    std::string tauMatch_Medium_;
-    std::string muonMatch_Loose_;
+    std::string tauMatch_Ele20Tau20_;
+    std::string eleMatch_Ele20Tau20_;
+    std::string muMatch_Mu24_;
+    std::string tauMatch_Ditau35_;
+    std::string tauMatch_Ditau30Jet30_;
+    std::string jetMatch_Ditau30Jet30_;
+    std::string muMatch_Mu18Tau25_;
+    std::string tauMatch_Mu18Tau25_;
+    std::string tauMatch_Mu17Tau20_;
+    std::string muMatch_Mu17Tau20_;
+    std::string muMatch_EleMu817_;
+    std::string eleMatch_EleMu817_;
 
     bool Include_HPSTau;
     bool Include_Muon;

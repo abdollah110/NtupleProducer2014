@@ -5,8 +5,8 @@ Directory with all packages
 ```shell
 mkdir NtupleProducer_help
 cd NtupleProducer_help/
-cmsrel CMSSW_5_3_14_patch2
-cd CMSSW_5_3_14_patch2/src/
+cmsrel CMSSW_5_3_14
+cd CMSSW_5_3_14/src/
 cmsenv
 ```
 
@@ -35,6 +35,11 @@ wget --no-check-certificate https://jez.web.cern.ch/jez/CMGTools.tgz
 tar xzvf CMGTools.tgz
 ```
 
+Ntuple producer
+```shell
+git clone https://github.com/cecilecaillol/NtupleProducer2014.git
+```
+
 Remove some conflicting packages
 ```shell
 rm -rf DataFormats/TauReco
@@ -51,35 +56,35 @@ Directory with tau ID packages
 cd ../../..
 mkdir NtupleProducer_main
 cd NtupleProducer_main
-cmsrel CMSSW_5_3_14_patch2
-cd CMSSW_5_3_14_patch2/src/
+cmsrel CMSSW_5_3_14
+cd CMSSW_5_3_14/src/
 cmsenv
 ```
 
 New tau ID
 ```shell
-git cms-merge-topic -u cms-tau-pog:CMSSW_5_3_X_boostedTaus
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/CMGTools .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/EgammaAnalysis/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/GeneratorInterface/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoBTag/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoEgamma/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoMET/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/DataFormats/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/RecoJets/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/PhysicsTools/ .
-cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14_patch2/src/JetMETCorrections/ .
+git cms-merge-topic -u cms-tau-pog:CMSSW_5_3_X_boostedTaus_2013Dec17
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/CMGTools .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/EgammaAnalysis/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/GeneratorInterface/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/RecoBTag/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/RecoEgamma/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/RecoMET/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/DataFormats/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/RecoJets/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/PhysicsTools/ .
+cp -rf ../../../NtupleProducer_help/CMSSW_5_3_14/src/JetMETCorrections/ .
+cp -r ../../../NtupleProducer_help/CMSSW_5_3_14/src/NtupleProducer2014/* .
 ```
 
 Correct TauMETAlgo.cc
 ```shell
 vi JetMETCorrections/Type1MET/src/TauMETAlgo.cc 
 :%s/PFCandidateRefVector/vector<reco::PFCandidatePtr>/g
-:q
+:wq
 ```
 
 ```shell
-git clone https://github.com/cecilecaillol/NtupleProducer2014.git
 scram b -j 20
 ```
+

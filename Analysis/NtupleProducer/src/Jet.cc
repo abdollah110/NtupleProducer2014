@@ -28,9 +28,15 @@ void NtupleProducer::DoJetAnalysis(const edm::Event& iEvent) {
     iEvent.getByLabel(rhoProducer_, hRho);
     double rho_ = *hRho;
 
+    edm::Handle< pat::TriggerEvent > triggerEvent;
+    iEvent.getByLabel(triggerEvent_, triggerEvent);
+    // PAT trigger helper for trigger matching information
+    const pat::helper::TriggerMatchHelper matchHelper;
+
     m->Rho = rho_;
    unsigned int i = 0;
-    for (JetCollection::const_iterator jet = PFjetsAK5->begin(); jet != PFjetsAK5->end(); jet++) {
+   int qq=0;
+    for (JetCollection::const_iterator jet = PFjetsAK5->begin(); jet != PFjetsAK5->end(); jet++, qq++) {
         myobject myjet;
         myjet.pt = jet->pt();
         myjet.eta = jet->eta();
@@ -65,6 +71,20 @@ void NtupleProducer::DoJetAnalysis(const edm::Event& iEvent) {
 	myjet.puJetIdLoose= PileupJetIdentifier2::passJetId( idflag, PileupJetIdentifier2::kLoose );
 	myjet.puJetIdMedium = PileupJetIdentifier2::passJetId( idflag, PileupJetIdentifier2::kMedium );
 	myjet.puJetIdTight = PileupJetIdentifier2::passJetId( idflag, PileupJetIdentifier2::kTight );
+
+        const pat::TriggerObjectRef trigRef_Ditau30Jet30(matchHelper.triggerMatchObject(PFjetsAK5, qq, jetMatch_Ditau30Jet30_, iEvent, *triggerEvent));
+        myjet.hasTrgObject_Ditau30Jet30 = false;
+        myjet.TrgObjectEta_Ditau30Jet30 = -100;
+        myjet.TrgObjectPt_Ditau30Jet30 = -100;
+        myjet.TrgObjectPhi_Ditau30Jet30 = -100;
+        if (trigRef_Ditau30Jet30.isAvailable()) { // check references (necessary!)
+          myjet.hasTrgObject_Ditau30Jet30 = true;
+          myjet.TrgObjectEta_Ditau30Jet30 = trigRef_Ditau30Jet30->eta();
+          myjet.TrgObjectPt_Ditau30Jet30 = trigRef_Ditau30Jet30->pt();
+          myjet.TrgObjectPhi_Ditau30Jet30 = trigRef_Ditau30Jet30->phi();
+        }
+
+
     //            (m->RecPFJetsAK5).push_back(myjet);
         //        }
         if (jet->pt() > 10)

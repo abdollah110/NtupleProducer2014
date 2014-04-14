@@ -218,11 +218,11 @@ void NtupleProducer::DoElectronAnalysis(const edm::Event& iEvent, const edm::Eve
 //        elo.EleId70cIso = iElectron->electronID("simpleEleId70cIso");
 //        elo.EleId60cIso = iElectron->electronID("simpleEleId60cIso");
 
-         elo.CicVeryLoose = iElectron->electronID("eidVeryLoose");
-         elo.CicLoose = iElectron->electronID("eidLoose");
-         elo.CicMedium = iElectron->electronID("eidMedium");
-         elo.CicTight = iElectron->electronID("eidTight");
-         elo.CicSuperTight = iElectron->electronID("eidSuperTight");
+         //elo.CicVeryLoose = iElectron->electronID("eidVeryLoose");
+         //elo.CicLoose = iElectron->electronID("eidLoose");
+         //elo.CicMedium = iElectron->electronID("eidMedium");
+         //elo.CicTight = iElectron->electronID("eidTight");
+         //elo.CicSuperTight = iElectron->electronID("eidSuperTight");
 
 //        elo.CicHZZVeryLoose = iElectron->electronID("eidHZZVeryLoose");
 //        elo.CicHZZLoose = iElectron->electronID("eidHZZLoose");

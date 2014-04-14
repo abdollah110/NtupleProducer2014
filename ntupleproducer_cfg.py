@@ -221,12 +221,12 @@ process.patElectrons.electronIDSources = cms.PSet(
     simpleEleId85relIso = cms.InputTag("simpleEleId85relIso"),
     simpleEleId80relIso = cms.InputTag("simpleEleId80relIso"),
     simpleEleId70relIso = cms.InputTag("simpleEleId70relIso"),
-    simpleEleId60relIso = cms.InputTag("simpleEleId60relIso")
-    #eidVeryLoose = cms.InputTag("eidVeryLoose"),
-    #eidLoose = cms.InputTag("eidLoose"),
-    #eidMedium = cms.InputTag("eidMedium"),
-    #eidTight = cms.InputTag("eidTight"),
-    #eidSuperTight = cms.InputTag("eidSuperTight")
+    simpleEleId60relIso = cms.InputTag("simpleEleId60relIso"),
+    eidVeryLoose = cms.InputTag("eidVeryLoose"),
+    eidLoose = cms.InputTag("eidLoose"),
+    eidMedium = cms.InputTag("eidMedium"),
+    eidTight = cms.InputTag("eidTight"),
+    eidSuperTight = cms.InputTag("eidSuperTight")
                                                       )
 
 

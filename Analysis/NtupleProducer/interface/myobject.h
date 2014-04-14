@@ -163,6 +163,16 @@ public:
     bool byVVTightIsolationMVA3oldDMwoLT;
     bool byVVTightIsolationMVA3newDMwoLT;
 
+    bool discriminationByDecayModeFindingNewDMs;
+    bool discriminationByDecayModeFindingOldDMs;
+    float discriminationByRawCombinedIsolationDBSumPtCorr;
+    float MVA3IsolationChargedIsoPtSum;
+    float MVA3IsolationNeutralIsoPtSum;
+    float MVA3IsolationPUcorrPtSum;
+    float discriminationByMVA5rawElectronRejection;
+    float discriminationByMVA5rawElectronRejectionCategory;
+    bool discriminationByDeadECALElectronRejection;
+
 //    trigger matching
         bool hasTrgObject_Mu17Tau20 ;
         float TrgObjectEta_Mu17Tau20 ;

@@ -70,6 +70,7 @@ public:
     float CicVeryLoose, CicLoose, CicMedium, CicTight, CicSuperTight;
 
     //For jet and taus
+    int decayMode;
     float bDiscriminatiors_CSV,bDiscriminatiors_JP,bDiscriminatiors_TCHPT;
     float jetPt, jetEta, jetPhi;
     float leadChargedParticlePt, leadTrackD0;

@@ -162,18 +162,6 @@ public:
     bool byVVTightIsolationMVA3oldDMwoLT;
     bool byVVTightIsolationMVA3newDMwoLT;
 
-  /*   float CicVeryLoose; */
-/*     float CicLoose; */
-/*     float CicMedium; */
-/*     float CicTight; */
-/*     float CicSuperTight; */
-
-    //    float CicHZZVeryLoose;
-    //    float CicHZZLoose;
-    //    float CicHZZMedium;
-    //    float CicHZZTight;
-    //    float CicHZZSuperTight;
-
 //    trigger matching
         bool hasTrgObject_Mu17Tau20 ;
         float TrgObjectEta_Mu17Tau20 ;

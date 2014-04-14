@@ -75,6 +75,8 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
         tauu.Energy = itau->energy();
         tauu.emfraction = itau->emFraction();
         tauu.charge = itau->charge();
+ 
+        tauu.decayMode = itau->decayMode();
 
         tauu.jetPt = itau->pfJetRef().get()->pt();
         tauu.jetEta = itau->pfJetRef().get()->eta();
@@ -84,8 +86,9 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
         tauu.leadChargedParticlePt = (itau->leadPFChargedHadrCand().isNonnull() ? (itau->leadPFChargedHadrCand())->pt() : 0.);
         tauu.leadTrackD0 = (itau->leadTrack().isNonnull() ? (itau->leadTrack())->dxy(PrVx->front().position()) : 0.);
 
-        //tauu.dz_PV=(itau->vertex()).dz(PrVx->front().position());
-        //tauu.dxy_PV=(itau->vertex()).dxy(PrVx->front().position());
+        tauu.dz_PV=TMath::Abs(itau->vertex().z()-PrVx->front().position().z());
+        tauu.dxy_PV=(itau->leadTrack().isNonnull() ? (itau->leadTrack())->dxy(PrVx->front().position()) : 0.); 
+        //(itau->vertex()).dxy(PrVx->front().position());
         //tauu.dxy_PV=(itau->leadPFChargedHadrCand().isNonnull() ? (itau->leadPFChargedHadrCand())->trackRef()->dxy(PrVx->front().position()) : 0.);
 
         tauu.numChargedParticlesSignalCone = itau->signalPFChargedHadrCands().size();

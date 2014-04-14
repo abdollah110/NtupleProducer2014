@@ -205,11 +205,11 @@ void NtupleProducer::DoElectronAnalysis(const edm::Event& iEvent, const edm::Eve
 	elo.preshowerE_SC = iElectron->superCluster()->preshowerEnergy();
 
         elo.EleId95rel = iElectron->electronID("simpleEleId95relIso");
-//        elo.EleId90rel = iElectron->electronID("simpleEleId90relIso");
-//        elo.EleId85rel = iElectron->electronID("simpleEleId85relIso");
-//        elo.EleId80rel = iElectron->electronID("simpleEleId80relIso");
-//        elo.EleId70rel = iElectron->electronID("simpleEleId70relIso");
-//        elo.EleId60rel = iElectron->electronID("simpleEleId60relIso");
+        elo.EleId90rel = iElectron->electronID("simpleEleId90relIso");
+        elo.EleId85rel = iElectron->electronID("simpleEleId85relIso");
+        elo.EleId80rel = iElectron->electronID("simpleEleId80relIso");
+        elo.EleId70rel = iElectron->electronID("simpleEleId70relIso");
+        elo.EleId60rel = iElectron->electronID("simpleEleId60relIso");
 
 //        elo.EleId95cIso = iElectron->electronID("simpleEleId95cIso");
 //        elo.EleId90cIso = iElectron->electronID("simpleEleId90cIso");
@@ -218,11 +218,11 @@ void NtupleProducer::DoElectronAnalysis(const edm::Event& iEvent, const edm::Eve
 //        elo.EleId70cIso = iElectron->electronID("simpleEleId70cIso");
 //        elo.EleId60cIso = iElectron->electronID("simpleEleId60cIso");
 
-//         elo.CicVeryLoose = iElectron->electronID("eidVeryLoose");
-//         elo.CicLoose = iElectron->electronID("eidLoose");
-//         elo.CicMedium = iElectron->electronID("eidMedium");
-//         elo.CicTight = iElectron->electronID("eidTight");
-//         elo.CicSuperTight = iElectron->electronID("eidSuperTight");
+         //elo.CicVeryLoose = iElectron->electronID("eidVeryLoose");
+         //elo.CicLoose = iElectron->electronID("eidLoose");
+         //elo.CicMedium = iElectron->electronID("eidMedium");
+         //elo.CicTight = iElectron->electronID("eidTight");
+         //elo.CicSuperTight = iElectron->electronID("eidSuperTight");
 
 //        elo.CicHZZVeryLoose = iElectron->electronID("eidHZZVeryLoose");
 //        elo.CicHZZLoose = iElectron->electronID("eidHZZLoose");
@@ -324,10 +324,32 @@ void NtupleProducer::DoElectronAnalysis(const edm::Event& iEvent, const edm::Eve
 	bool passconversionveto = false;
 	if( hConversions.isValid()){
 	  // this is recommended method
-	  passconversionveto = !ConversionTools::hasMatchedConversion( dynamic_cast<reco::GsfElectron const&>(*(iElectron->originalObjectRef())), hConversions, beamSpot->position());
+	  passconversionveto = !ConversionTools::hasMatchedConversion( dynamic_cast<reco::GsfElectron const&>(*(iElectron->originalObjectRef())), hConversions, beamSpot->position(),true,2.0,1e-6,0);
 	}
 	elo.passConversionVeto = passconversionveto;
 
+        const pat::TriggerObjectRef trigRef_EleMu817(matchHelper.triggerMatchObject(ElectronsHandle, index, eleMatch_EleMu817_, iEvent, *triggerEvent));
+        elo.hasTrgObject_EleMu817 = false;
+        elo.TrgObjectEta_EleMu817 = -100;
+        elo.TrgObjectPt_EleMu817 = -100;
+        elo.TrgObjectPhi_EleMu817 = -100;
+        if (trigRef_EleMu817.isAvailable()) { // check references (necessary!)
+          elo.hasTrgObject_EleMu817 = true;
+          elo.TrgObjectEta_EleMu817 = trigRef_EleMu817->eta();
+          elo.TrgObjectPt_EleMu817 = trigRef_EleMu817->pt();
+          elo.TrgObjectPhi_EleMu817 = trigRef_EleMu817->phi();
+        }
+        const pat::TriggerObjectRef trigRef_Ele20Tau20(matchHelper.triggerMatchObject(ElectronsHandle, index, eleMatch_Ele20Tau20_, iEvent, *triggerEvent));
+        elo.hasTrgObject_Ele20Tau20 = false;
+        elo.TrgObjectEta_Ele20Tau20 = -100;
+        elo.TrgObjectPt_Ele20Tau20 = -100;
+        elo.TrgObjectPhi_Ele20Tau20 = -100;
+        if (trigRef_Ele20Tau20.isAvailable()) { // check references (necessary!)
+          elo.hasTrgObject_Ele20Tau20 = true;
+          elo.TrgObjectEta_Ele20Tau20 = trigRef_Ele20Tau20->eta();
+          elo.TrgObjectPt_Ele20Tau20 = trigRef_Ele20Tau20->pt();
+          elo.TrgObjectPhi_Ele20Tau20 = trigRef_Ele20Tau20->phi();
+        }
 
 
 

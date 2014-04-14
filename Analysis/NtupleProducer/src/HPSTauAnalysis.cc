@@ -84,78 +84,9 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
         tauu.leadChargedParticlePt = (itau->leadPFChargedHadrCand().isNonnull() ? (itau->leadPFChargedHadrCand())->pt() : 0.);
         tauu.leadTrackD0 = (itau->leadTrack().isNonnull() ? (itau->leadTrack())->dxy(PrVx->front().position()) : 0.);
 
- //hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-       /*vector<reco::PFCandidatePtr> PFCons = (itau->pfJetRef())->getPFConstituents();
-       vector<reco::PFCandidatePtr> PFSignal = itau->signalPFChargedHadrCands();
-       int chargedMul_noPt_noDz_signalSub=0;	
-       int chargedMul_noPt_Dz_signalSub=0;
-       int chargedMul_Pt10_noDz_signalSub=0;
-       int chargedMul_Pt10_Dz_signalSub=0;
-       int chargedMul_Pt15_noDz_signalSub=0;
-       int chargedMul_Pt15_Dz_signalSub=0;
-       int chargedMul_noPt_noDz=0;
-       int chargedMul_noPt_Dz=0;
-       int chargedMul_Pt10_noDz=0;
-       int chargedMul_Pt10_Dz=0;
-       int chargedMul_Pt15_noDz=0;
-       int chargedMul_Pt15_Dz=0;
-       bool overlap_signal=false;
-       for(vector<reco::PFCandidatePtr>::const_iterator iChargedHadrCand=PFCons.begin(); iChargedHadrCand!=PFCons.end();++iChargedHadrCand) {
-		overlap_signal=false;
-                for(vector<reco::PFCandidatePtr>::const_iterator iSignalHadrCand=PFSignal.begin(); iSignalHadrCand!=PFSignal.end();++iSignalHadrCand) {
-                        if (deltaR((**iChargedHadrCand).p4(),(**iSignalHadrCand).p4()) <0.01){
-                                overlap_signal=true;
-                        }
-                }
-		if (fabs((**iChargedHadrCand).vertex().z() - PrVx_match->front().z())<0.2){
-			chargedMul_noPt_Dz++;
-			if ((**iChargedHadrCand).pt()>1.0)
-				chargedMul_Pt10_Dz++;
-			if ((**iChargedHadrCand).pt()>1.5)
-                                chargedMul_Pt15_Dz++;
-			if (overlap_signal==false){
-                               	chargedMul_noPt_Dz_signalSub++;
-				if ((**iChargedHadrCand).pt()>1.0)
-                                	chargedMul_Pt10_Dz_signalSub++;
-                        	if ((**iChargedHadrCand).pt()>1.5)
-                                	chargedMul_Pt15_Dz_signalSub++;
-			}
-                }
-		chargedMul_noPt_noDz++;
-                if ((**iChargedHadrCand).pt()>1.0)
-                	chargedMul_Pt10_noDz++;
-                if ((**iChargedHadrCand).pt()>1.5)
-                        chargedMul_Pt15_noDz++;
-		if (overlap_signal==false){
-                	chargedMul_noPt_noDz_signalSub++;
-                        if ((**iChargedHadrCand).pt()>1.0)
-                        	chargedMul_Pt10_noDz_signalSub++;
-                        if ((**iChargedHadrCand).pt()>1.5)
-                                chargedMul_Pt15_noDz_signalSub++;
-               }
-       } 
-       tauu.chargedMul_noPt_noDz_signalSub=chargedMul_noPt_noDz_signalSub;
-       tauu.chargedMul_noPt_noDz=chargedMul_noPt_noDz;
-       tauu.chargedMul_Pt10_noDz_signalSub=chargedMul_Pt10_noDz_signalSub;
-       tauu.chargedMul_Pt10_noDz=chargedMul_Pt10_noDz;
-       tauu.chargedMul_Pt15_noDz_signalSub=chargedMul_Pt15_noDz_signalSub;
-       tauu.chargedMul_Pt15_noDz=chargedMul_Pt15_noDz;
-       tauu.chargedMul_noPt_Dz_signalSub=chargedMul_noPt_Dz_signalSub;
-       tauu.chargedMul_noPt_Dz=chargedMul_noPt_Dz;
-       tauu.chargedMul_Pt10_Dz_signalSub=chargedMul_Pt10_Dz_signalSub;
-       tauu.chargedMul_Pt10_Dz=chargedMul_Pt10_Dz;
-       tauu.chargedMul_Pt15_Dz_signalSub=chargedMul_Pt15_Dz_signalSub;
-       tauu.chargedMul_Pt15_Dz=chargedMul_Pt15_Dz;
-*/
-       //vector<reco::PFCandidatePtr> IsolationHadr = itau->isolationPFChargedHadrCands();
-       //for(vector<reco::PFCandidatePtr>::const_iterator iIsolationHadrCand=IsolationHadr.begin(); iIsolationHadrCand!=IsolationHadr.end();++iIsolationHadrCand) {
-       //        (tauu.isolationpt).push_back((**iIsolationHadrCand).pt());
-       //}
-  
-
-        //tauu.chargedMultiplicity = taille;
-
-
+        //tauu.dz_PV=(itau->vertex()).dz(PrVx->front().position());
+        //tauu.dxy_PV=(itau->vertex()).dxy(PrVx->front().position());
+        //tauu.dxy_PV=(itau->leadPFChargedHadrCand().isNonnull() ? (itau->leadPFChargedHadrCand())->trackRef()->dxy(PrVx->front().position()) : 0.);
 
         tauu.numChargedParticlesSignalCone = itau->signalPFChargedHadrCands().size();
         tauu.numNeutralHadronsSignalCone = itau->signalPFNeutrHadrCands().size();
@@ -284,31 +215,53 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
 
 
                 //TriggerObjectmatching
-        const pat::TriggerObjectRef trigRef_loose(matchHelper.triggerMatchObject(tausHandle, ipftau, tauMatch_Loose_, iEvent, *triggerEvent));
-        tauu.hasTrgObject_loose = false;
-        tauu.TrgObjectEta_loose = -100;
-        tauu.TrgObjectPt_loose = -100;
-        tauu.TrgObjectPhi_loose = -100;
-        // finally we can fill the histograms
-        if (trigRef_loose.isAvailable()) { // check references (necessary!)
 
-            tauu.hasTrgObject_loose = true;
-            tauu.TrgObjectEta_loose = trigRef_loose->eta();
-            tauu.TrgObjectPt_loose = trigRef_loose->pt();
-            tauu.TrgObjectPhi_loose = trigRef_loose->phi();
+        const pat::TriggerObjectRef trigRef_Ele20Tau20(matchHelper.triggerMatchObject(tausHandle, ipftau, tauMatch_Ele20Tau20_, iEvent, *triggerEvent));
+        tauu.hasTrgObject_Ele20Tau20 = false;
+        tauu.TrgObjectEta_Ele20Tau20 = -100;
+        tauu.TrgObjectPt_Ele20Tau20 = -100;
+        tauu.TrgObjectPhi_Ele20Tau20 = -100;
+        if (trigRef_Ele20Tau20.isAvailable()) { // check references (necessary!)
+          tauu.hasTrgObject_Ele20Tau20 = true;
+          tauu.TrgObjectEta_Ele20Tau20 = trigRef_Ele20Tau20->eta();
+          tauu.TrgObjectPt_Ele20Tau20 = trigRef_Ele20Tau20->pt();
+          tauu.TrgObjectPhi_Ele20Tau20 = trigRef_Ele20Tau20->phi();
         }
 
-        const pat::TriggerObjectRef trigRef_medium(matchHelper.triggerMatchObject(tausHandle, ipftau, tauMatch_Medium_, iEvent, *triggerEvent));
-        tauu.hasTrgObject_medium = false;
-        tauu.TrgObjectEta_medium = -100;
-        tauu.TrgObjectPt_medium = -100;
-        tauu.TrgObjectPhi_medium = -100;
-        // finally we can fill the histograms
-        if (trigRef_medium.isAvailable()) { // check references (necessary!)
-             tauu.hasTrgObject_medium = true;
-             tauu.TrgObjectEta_medium = trigRef_medium->eta();
-             tauu.TrgObjectPt_medium = trigRef_medium->pt();
-             tauu.TrgObjectPhi_medium = trigRef_medium->phi();
+        const pat::TriggerObjectRef trigRef_Ditau30Jet30(matchHelper.triggerMatchObject(tausHandle, ipftau, tauMatch_Ditau30Jet30_, iEvent, *triggerEvent));
+        tauu.hasTrgObject_Ditau30Jet30 = false;
+        tauu.TrgObjectEta_Ditau30Jet30 = -100;
+        tauu.TrgObjectPt_Ditau30Jet30 = -100;
+        tauu.TrgObjectPhi_Ditau30Jet30 = -100;
+        if (trigRef_Ditau30Jet30.isAvailable()) { // check references (necessary!)
+          tauu.hasTrgObject_Ditau30Jet30 = true;
+          tauu.TrgObjectEta_Ditau30Jet30 = trigRef_Ditau30Jet30->eta();
+          tauu.TrgObjectPt_Ditau30Jet30 = trigRef_Ditau30Jet30->pt();
+          tauu.TrgObjectPhi_Ditau30Jet30 = trigRef_Ditau30Jet30->phi();
+        }
+
+        const pat::TriggerObjectRef trigRef_Ditau35(matchHelper.triggerMatchObject(tausHandle, ipftau, tauMatch_Ditau35_, iEvent, *triggerEvent));
+        tauu.hasTrgObject_Ditau35 = false;
+        tauu.TrgObjectEta_Ditau35 = -100;
+        tauu.TrgObjectPt_Ditau35 = -100;
+        tauu.TrgObjectPhi_Ditau35 = -100;
+        if (trigRef_Ditau35.isAvailable()) { // check references (necessary!)
+          tauu.hasTrgObject_Ditau35 = true;
+          tauu.TrgObjectEta_Ditau35 = trigRef_Ditau35->eta();
+          tauu.TrgObjectPt_Ditau35 = trigRef_Ditau35->pt();
+          tauu.TrgObjectPhi_Ditau35 = trigRef_Ditau35->phi();
+        }
+
+        const pat::TriggerObjectRef trigRef_Mu17Tau20(matchHelper.triggerMatchObject(tausHandle, ipftau, tauMatch_Mu17Tau20_, iEvent, *triggerEvent));
+        tauu.hasTrgObject_Mu17Tau20 = false;
+        tauu.TrgObjectEta_Mu17Tau20 = -100;
+        tauu.TrgObjectPt_Mu17Tau20 = -100;
+        tauu.TrgObjectPhi_Mu17Tau20 = -100;
+        if (trigRef_Mu17Tau20.isAvailable()) { // check references (necessary!)
+          tauu.hasTrgObject_Mu17Tau20 = true;
+          tauu.TrgObjectEta_Mu17Tau20 = trigRef_Mu17Tau20->eta();
+          tauu.TrgObjectPt_Mu17Tau20 = trigRef_Mu17Tau20->pt();
+          tauu.TrgObjectPhi_Mu17Tau20 = trigRef_Mu17Tau20->phi();
         }
 
 

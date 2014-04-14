@@ -94,10 +94,18 @@ rhoCenNeutralTight_= iConfig.getParameter<edm::InputTag > ("rhoCenNeutralTight")
 
     //needed for trigger matching
     triggerEvent_ = (iConfig.getParameter< edm::InputTag > ("triggerEvent"));
-    tauMatch_Loose_ = (iConfig.getParameter< std::string > ("tauMatch_Loose"));
-    tauMatch_Medium_ = (iConfig.getParameter< std::string > ("tauMatch_Medium"));
-    electronMatch_Loose_ = (iConfig.getParameter< std::string > ("electronMatch_Loose"));
-    muonMatch_Loose_ = (iConfig.getParameter< std::string > ("muonMatch_Loose"));
+    tauMatch_Ditau35_ = (iConfig.getParameter< std::string > ("tauMatch_Ditau35"));
+    tauMatch_Ditau30Jet30_ = (iConfig.getParameter< std::string > ("tauMatch_Ditau30Jet30"));
+    jetMatch_Ditau30Jet30_ = (iConfig.getParameter< std::string > ("jetMatch_Ditau30Jet30"));
+    muMatch_Mu24_ = (iConfig.getParameter< std::string > ("muMatch_Mu24"));
+    eleMatch_EleMu817_ = (iConfig.getParameter< std::string > ("eleMatch_EleMu817"));
+    muMatch_EleMu817_ = (iConfig.getParameter< std::string > ("muMatch_EleMu817"));
+    tauMatch_Ele20Tau20_ = (iConfig.getParameter< std::string > ("tauMatch_Ele20Tau20"));
+    eleMatch_Ele20Tau20_ = (iConfig.getParameter< std::string > ("eleMatch_Ele20Tau20"));
+    tauMatch_Mu17Tau20_ = (iConfig.getParameter< std::string > ("tauMatch_Mu17Tau20"));
+    muMatch_Mu17Tau20_ = (iConfig.getParameter< std::string > ("muMatch_Mu17Tau20"));
+    tauMatch_Mu18Tau25_ = (iConfig.getParameter< std::string > ("tauMatch_Mu18Tau25"));
+    muMatch_Mu18Tau25_ = (iConfig.getParameter< std::string > ("muMatch_Mu18Tau25"));
 
     filterTriggerResults = iConfig.exists("filterTriggerResults") ? iConfig.getParameter<bool>("filterTriggerResults") : 0 ;
     puJetIdFlag_ = iConfig.getParameter<edm::InputTag>("puJetIdFlag");

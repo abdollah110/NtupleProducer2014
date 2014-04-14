@@ -116,7 +116,7 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
         tauu.discriminationByDecayModeFindingOldDMs = itau->tauID("decayModeFindingOldDMs") > 0.5 ? true : false;
         tauu.discriminationByDecayModeFindingNewDMs = itau->tauID("decayModeFindingNewDMs") > 0.5 ? true : false;
 
-        tauu.discriminationByLooseIsolation = itau->tauID("byLooseIsolation");
+        tauu.discriminationByLooseIsolation = itau->tauID("byLooseIsolation") > 0.5 ? true : false;
         tauu.discriminationByRawCombinedIsolationDBSumPtCorr = itau->tauID("byCombinedIsolationDeltaBetaCorrRaw");
 
         tauu.byVLooseCombinedIsolationDeltaBetaCorr = itau->tauID("byVLooseCombinedIsolationDeltaBetaCorr") > 0.5 ? true : false;

@@ -46,7 +46,7 @@ process.source = cms.Source("PoolSource",
     )
                             )
 process.maxEvents = cms.untracked.PSet(
-                                       input=cms.untracked.int32(300)
+                                       input=cms.untracked.int32(30)
                                        )
 
 isMC = True      #comment it for Data
@@ -468,6 +468,7 @@ process.p = cms.Path (
                       process.dataFilter *
                       process.selectPrimaryVertex *
                       process.PFTau * #prescribed by TAU POG
+		      process.recoTauClassicHPSSequence *
                       process.mvaID   *
 		      process.ElectronIDs  *
                       process.inclusiveVertexing *

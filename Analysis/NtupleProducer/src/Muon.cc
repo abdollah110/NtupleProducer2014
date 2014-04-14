@@ -189,19 +189,54 @@ muo.normalizedChi2_innTrk = (amuon->innerTrack().isNonnull() ? amuon->innerTrack
 
         }
 	
-	const pat::TriggerObjectRef trigRef_loose(matchHelper.triggerMatchObject(muonsHandle, qq, muonMatch_Loose_, iEvent, *triggerEvent));
-        muo.hasTrgObject_loose = false;
-        muo.TrgObjectEta_loose = -100;
-        muo.TrgObjectPt_loose = -100;
-        muo.TrgObjectPhi_loose = -100;
-        // finally we can fill the histograms
-        if (trigRef_loose.isAvailable()) { // check references (necessary!)
-
-	  muo.hasTrgObject_loose = true;
-	  muo.TrgObjectEta_loose = trigRef_loose->eta();
-	  muo.TrgObjectPt_loose = trigRef_loose->pt();
-	  muo.TrgObjectPhi_loose = trigRef_loose->phi();
+	const pat::TriggerObjectRef trigRef_Mu17Tau20(matchHelper.triggerMatchObject(muonsHandle, qq, muMatch_Mu17Tau20_, iEvent, *triggerEvent));
+        muo.hasTrgObject_Mu17Tau20 = false;
+        muo.TrgObjectEta_Mu17Tau20 = -100;
+        muo.TrgObjectPt_Mu17Tau20 = -100;
+        muo.TrgObjectPhi_Mu17Tau20 = -100;
+        if (trigRef_Mu17Tau20.isAvailable()) { // check references (necessary!)
+	  muo.hasTrgObject_Mu17Tau20 = true;
+	  muo.TrgObjectEta_Mu17Tau20 = trigRef_Mu17Tau20->eta();
+	  muo.TrgObjectPt_Mu17Tau20 = trigRef_Mu17Tau20->pt();
+	  muo.TrgObjectPhi_Mu17Tau20 = trigRef_Mu17Tau20->phi();
         }
+
+        const pat::TriggerObjectRef trigRef_EleMu817(matchHelper.triggerMatchObject(muonsHandle, qq, muMatch_EleMu817_, iEvent, *triggerEvent));
+        muo.hasTrgObject_EleMu817 = false;
+        muo.TrgObjectEta_EleMu817 = -100;
+        muo.TrgObjectPt_EleMu817 = -100;
+        muo.TrgObjectPhi_EleMu817 = -100;
+        if (trigRef_EleMu817.isAvailable()) { // check references (necessary!)
+          muo.hasTrgObject_EleMu817 = true;
+          muo.TrgObjectEta_EleMu817 = trigRef_EleMu817->eta();
+          muo.TrgObjectPt_EleMu817 = trigRef_EleMu817->pt();
+          muo.TrgObjectPhi_EleMu817 = trigRef_EleMu817->phi();
+        }
+
+        const pat::TriggerObjectRef trigRef_Mu24(matchHelper.triggerMatchObject(muonsHandle, qq, muMatch_Mu24_, iEvent, *triggerEvent));
+        muo.hasTrgObject_Mu24 = false;
+        muo.TrgObjectEta_Mu24 = -100;
+        muo.TrgObjectPt_Mu24 = -100;
+        muo.TrgObjectPhi_Mu24 = -100;
+        if (trigRef_Mu24.isAvailable()) { // check references (necessary!)
+          muo.hasTrgObject_Mu24 = true;
+          muo.TrgObjectEta_Mu24 = trigRef_Mu24->eta();
+          muo.TrgObjectPt_Mu24 = trigRef_Mu24->pt();
+          muo.TrgObjectPhi_Mu24 = trigRef_Mu24->phi();
+        }
+
+        const pat::TriggerObjectRef trigRef_Mu18Tau25(matchHelper.triggerMatchObject(muonsHandle, qq, muMatch_Mu18Tau25_, iEvent, *triggerEvent));
+        muo.hasTrgObject_Mu18Tau25 = false;
+        muo.TrgObjectEta_Mu18Tau25 = -100;
+        muo.TrgObjectPt_Mu18Tau25 = -100;
+        muo.TrgObjectPhi_Mu18Tau25 = -100;
+        if (trigRef_Mu18Tau25.isAvailable()) { // check references (necessary!)
+          muo.hasTrgObject_Mu18Tau25 = true;
+          muo.TrgObjectEta_Mu18Tau25 = trigRef_Mu18Tau25->eta();
+          muo.TrgObjectPt_Mu18Tau25 = trigRef_Mu18Tau25->pt();
+          muo.TrgObjectPhi_Mu18Tau25 = trigRef_Mu18Tau25->phi();
+        }
+
 
         (m->PreSelectedMuons).push_back(muo);
 

@@ -221,12 +221,12 @@ process.patElectrons.electronIDSources = cms.PSet(
     simpleEleId85relIso = cms.InputTag("simpleEleId85relIso"),
     simpleEleId80relIso = cms.InputTag("simpleEleId80relIso"),
     simpleEleId70relIso = cms.InputTag("simpleEleId70relIso"),
-    simpleEleId60relIso = cms.InputTag("simpleEleId60relIso"),
-    eidVeryLoose = cms.InputTag("eidVeryLoose"),
-    eidLoose = cms.InputTag("eidLoose"),
-    eidMedium = cms.InputTag("eidMedium"),
-    eidTight = cms.InputTag("eidTight"),
-    eidSuperTight = cms.InputTag("eidSuperTight")
+    simpleEleId60relIso = cms.InputTag("simpleEleId60relIso")
+    #eidVeryLoose = cms.InputTag("eidVeryLoose"),
+    #eidLoose = cms.InputTag("eidLoose"),
+    #eidMedium = cms.InputTag("eidMedium"),
+    #eidTight = cms.InputTag("eidTight"),
+    #eidSuperTight = cms.InputTag("eidSuperTight")
                                                       )
 
 
@@ -492,7 +492,7 @@ process.p = cms.Path (
 from PhysicsTools.PatAlgos.tools.trigTools import *
 
 #switchOnTrigger( process ) # This is optional and can be omitted.
-switchOnTriggerMatching(process, ['muTriggerEleMu817','eleTriggerEleMu817','tauTriggerDitau35','tauTriggerDitau30Jet30','jetTriggerDiatu30Jet30','eleTriggerEle20Tau20','tauTriggerEle20Tau20','muTriggerMu17Tau20','tauTriggerMu17Tau20','muTriggerMu18Tau25','tauTriggerMu18Tau25','muTriggerMu24'])
+switchOnTriggerMatching(process, ['muTriggerEleMu817','eleTriggerEleMu817','tauTriggerDitau35','tauTriggerDitau30Jet30','jetTriggerDitau30Jet30','eleTriggerEle20Tau20','tauTriggerEle20Tau20','muTriggerMu17Tau20','tauTriggerMu17Tau20','muTriggerMu18Tau25','tauTriggerMu18Tau25','muTriggerMu24'])
 
 # Switch to selected PAT objects in the trigger matching
 removeCleaningFromTriggerMatching(process)

@@ -113,6 +113,11 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
         tauu.trackRefPt = (itau->leadPFChargedHadrCand().isNonnull() ? itau->leadPFChargedHadrCand()->pt() : 0.);
 
         tauu.discriminationByDecayModeFinding = itau->tauID("decayModeFinding") > 0.5 ? true : false;
+        tauu.discriminationByDecayModeFindingOldDMs = itau->tauID("decayModeFindingOldDMs") > 0.5 ? true : false;
+        tauu.discriminationByDecayModeFindingNewDMs = itau->tauID("decayModeFindingNewDMs") > 0.5 ? true : false;
+
+        tauu.discriminationByLooseIsolation = itau->tauID("byLooseIsolation");
+        tauu.discriminationByRawCombinedIsolationDBSumPtCorr = itau->tauID("byCombinedIsolationDeltaBetaCorrRaw");
 
         tauu.byVLooseCombinedIsolationDeltaBetaCorr = itau->tauID("byVLooseCombinedIsolationDeltaBetaCorr") > 0.5 ? true : false;
         tauu.byLooseCombinedIsolationDeltaBetaCorr = itau->tauID("byLooseCombinedIsolationDeltaBetaCorr") > 0.5 ? true : false;
@@ -129,13 +134,16 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
         tauu.discriminationByElectronLoose = itau->tauID("againstElectronLoose") > 0.5 ? true : false;
         tauu.discriminationByElectronMedium = itau->tauID("againstElectronMedium") > 0.5 ? true : false;
         tauu.discriminationByElectronTight = itau->tauID("againstElectronTight") > 0.5 ? true : false;
-        //tauu.discriminationByElectronMVA = itau->tauID("againstElectronMVA") > 0.5 ? true : false;
 
         tauu.discriminationByElectronMVA5Loose = itau->tauID("againstElectronLooseMVA5") > 0.5 ? true : false;
         tauu.discriminationByElectronMVA5Medium = itau->tauID("againstElectronMediumMVA5") > 0.5 ? true : false;
         tauu.discriminationByElectronMVA5Tight = itau->tauID("againstElectronTightMVA5") > 0.5 ? true : false;
 	tauu.discriminationByElectronMVA5VTight = itau->tauID("againstElectronVTightMVA5") > 0.5 ? true : false;
 	tauu.discriminationByElectronMVA5VLoose = itau->tauID("againstElectronVLooseMVA5") > 0.5 ? true : false;
+
+        tauu.discriminationByMVA5rawElectronRejection = itau->tauID("againstElectronMVA5raw");
+        tauu.discriminationByMVA5rawElectronRejectionCategory = itau->tauID("againstElectronMVA5category");
+        tauu.discriminationByDeadECALElectronRejection = itau->tauID("againstElectronDeadECAL") > 0.5 ? true : false;
 
 	// muon rejection
         tauu.discriminationByMuonLoose = itau->tauID("againstMuonLoose") > 0.5 ? true : false;
@@ -155,18 +163,11 @@ void NtupleProducer::DoHPSTauAnalysis(const edm::Event& iEvent, const edm::Event
 
         tauu.discriminationByMuonMVAraw = itau->tauID("againstMuonMVAraw");
 
+        tauu.MVA3IsolationChargedIsoPtSum = itau->tauID("chargedIsoPtSum");
+        tauu.MVA3IsolationNeutralIsoPtSum = itau->tauID("neutralIsoPtSum");
+        tauu.MVA3IsolationPUcorrPtSum = itau->tauID("puCorrPtSum");
 
         //MVA isolation
-        //tauu.byIsolationMVAraw = itau->tauID("byIsolationMVAraw");
-        //tauu.byLooseIsolationMVA = itau->tauID("byLooseIsolationMVA") > 0.5 ? true : false;
-        //tauu.byMediumIsolationMVA = itau->tauID("byMediumIsolationMVA") > 0.5 ? true : false;
-        //tauu.byTightIsolationMVA = itau->tauID("byTightIsolationMVA") > 0.5 ? true : false;
-	
- 	//tauu.byIsolationMVA2raw = itau->tauID("byIsolationMVA2raw");
-        //tauu.byLooseIsolationMVA2 = itau->tauID("byLooseIsolationMVA2") > 0.5 ? true : false;
-        //tauu.byMediumIsolationMVA2 = itau->tauID("byMediumIsolationMVA2") > 0.5 ? true : false;
-        //tauu.byTightIsolationMVA2 = itau->tauID("byTightIsolationMVA2") > 0.5 ? true : false;
-
         tauu.byIsolationMVA3oldDMwLTraw = itau->tauID("byIsolationMVA3oldDMwLTraw");
         tauu.byVLooseIsolationMVA3oldDMwLT = itau->tauID("byVLooseIsolationMVA3oldDMwLT") > 0.5 ? true : false;
         tauu.byLooseIsolationMVA3oldDMwLT = itau->tauID("byLooseIsolationMVA3oldDMwLT") > 0.5 ? true : false;

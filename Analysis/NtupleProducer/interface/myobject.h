@@ -66,7 +66,8 @@ public:
     float ecalIso, hcalIso, caloIso, trackIso, hcalOverEcal, SIP;
     bool passConversionVeto;
     float rawE_SC, preshowerE_SC;
-    float EleId95rel;
+    float EleId95rel, EleId90rel, EleId85rel, EleId80rel, EleId70rel, EleId60rel;
+    float CicVeryLoose, CicLoose, CicMedium, CicTight, CicSuperTight;
 
     //For jet and taus
     float bDiscriminatiors_CSV,bDiscriminatiors_JP,bDiscriminatiors_TCHPT;
@@ -78,7 +79,6 @@ public:
     int numChargedParticlesSignalCone, numNeutralHadronsSignalCone, numPhotonsSignalCone, numParticlesSignalCone, signalPiZeroCandidates;
     int numChargedParticlesIsoCone, numNeutralHadronsIsoCone, numPhotonsIsoCone, numParticlesIsoCone;
     float ptSumChargedParticlesIsoCone, ptSumPhotonsIsoCone;
-    int chargedMul_noPt_noDz_signalSub,chargedMul_noPt_noDz,chargedMul_Pt10_noDz_signalSub,chargedMul_Pt10_noDz,chargedMul_Pt15_noDz_signalSub,chargedMul_Pt15_noDz,chargedMul_noPt_Dz_signalSub,chargedMul_noPt_Dz,chargedMul_Pt10_Dz_signalSub,chargedMul_Pt10_Dz,chargedMul_Pt15_Dz_signalSub,chargedMul_Pt15_Dz;
     
     float sig_track1_pt, sig_track1_phi, sig_track1_eta, sig_track1_m;
     float sig_track2_pt, sig_track2_phi, sig_track2_eta, sig_track2_m;
@@ -175,16 +175,34 @@ public:
     //    float CicHZZSuperTight;
 
 //    trigger matching
-        bool hasTrgObject_loose ;
-        float TrgObjectEta_loose ;
-        float TrgObjectPt_loose ;
-        float TrgObjectPhi_loose ;
-
-        bool hasTrgObject_medium ;
-        float TrgObjectEta_medium ;
-        float TrgObjectPt_medium ;
-        float TrgObjectPhi_medium ;
-
+        bool hasTrgObject_Mu17Tau20 ;
+        float TrgObjectEta_Mu17Tau20 ;
+        float TrgObjectPt_Mu17Tau20 ;
+        float TrgObjectPhi_Mu17Tau20 ;
+        bool hasTrgObject_Mu18Tau25 ;
+        float TrgObjectEta_Mu18Tau25 ;
+        float TrgObjectPt_Mu18Tau25 ;
+        float TrgObjectPhi_Mu18Tau25 ;
+        bool hasTrgObject_Ele20Tau20 ;
+        float TrgObjectEta_Ele20Tau20 ;
+        float TrgObjectPt_Ele20Tau20 ;
+        float TrgObjectPhi_Ele20Tau20 ;
+        bool hasTrgObject_EleMu817 ;
+        float TrgObjectEta_EleMu817 ;
+        float TrgObjectPt_EleMu817 ;
+        float TrgObjectPhi_EleMu817 ;
+        bool hasTrgObject_Ditau30Jet30 ;
+        float TrgObjectEta_Ditau30Jet30 ;
+        float TrgObjectPt_Ditau30Jet30 ;
+        float TrgObjectPhi_Ditau30Jet30 ;
+        bool hasTrgObject_Ditau35 ;
+        float TrgObjectEta_Ditau35 ;
+        float TrgObjectPt_Ditau35 ;
+        float TrgObjectPhi_Ditau35 ;
+        bool hasTrgObject_Mu24 ;
+        float TrgObjectEta_Mu24 ;
+        float TrgObjectPt_Mu24 ;
+        float TrgObjectPhi_Mu24 ;
 
     ClassDef(myobject, 1)
 };

@@ -83,10 +83,10 @@ rhoCenNeutralTight_= iConfig.getParameter<edm::InputTag > ("rhoCenNeutralTight")
     PreSelectedhpsCollection_ = iConfig.getParameter<edm::InputTag > ("preselectedHPSTaus");
     vertexCollectionForLeptonIP_ = iConfig.exists("vertexCollectionForLeptonIP") ? iConfig.getParameter<edm::InputTag>("vertexCollectionForLeptonIP") : edm::InputTag("offlinePrimaryVertices");
 
-    EleID_VeryLooseTag_ = iConfig.getParameter<edm::InputTag > ("eleID_VeryLooseTag");
-    EleID_LooseTag_ = iConfig.getParameter<edm::InputTag > ("eleID_LooseTag");
-    EleID_MediumTag_ = iConfig.getParameter<edm::InputTag > ("eleID_MediumTag");
-    EleID_TightTag_ = iConfig.getParameter<edm::InputTag > ("eleID_TightTag");
+    //EleID_VeryLooseTag_ = iConfig.getParameter<edm::InputTag > ("eleID_VeryLooseTag");
+    //EleID_LooseTag_ = iConfig.getParameter<edm::InputTag > ("eleID_LooseTag");
+    //EleID_MediumTag_ = iConfig.getParameter<edm::InputTag > ("eleID_MediumTag");
+    //EleID_TightTag_ = iConfig.getParameter<edm::InputTag > ("eleID_TightTag");
     srcTriggerResults_ = iConfig.getParameter<edm::InputTag > ("srcTriggerResults");
 
     PileUpInfo_ = iConfig.getParameter<edm::InputTag > ("PileUpInfo");
